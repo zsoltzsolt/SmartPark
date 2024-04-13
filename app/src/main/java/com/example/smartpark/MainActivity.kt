@@ -1,8 +1,11 @@
 package com.example.smartpark
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import com.example.smartpark.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+       
 
     }
 

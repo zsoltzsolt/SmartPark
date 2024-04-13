@@ -36,8 +36,13 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.btnLogin.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
+        binding.btnLogin.setOnClickListener {
             var username = binding.tieEmail.text.toString()
             var password = binding.tiePassword.text.toString()
             getMyData(username, password, this)
