@@ -1,4 +1,4 @@
-package com.example.smartpark
+package com.example.smartpark.model
 
 data class LoginResponseData(
     val access_token: String,

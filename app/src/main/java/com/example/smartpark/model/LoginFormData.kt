@@ -1,4 +1,4 @@
-package com.example.smartpark
+package com.example.smartpark.model
 
 import retrofit2.http.Field
 
