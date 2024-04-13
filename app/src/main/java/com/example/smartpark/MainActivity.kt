@@ -24,7 +24,20 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-       
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+
+        binding.btnLogout.setOnClickListener{
+            val sharedPreferences = this.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.remove("access_token")
+            editor.apply()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
     }
 
