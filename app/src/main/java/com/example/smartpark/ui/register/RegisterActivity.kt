@@ -1,11 +1,11 @@
-package com.example.smartpark
+package com.example.smartpark.ui.register
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.smartpark.databinding.ActivityLoginBinding
 import com.example.smartpark.databinding.ActivityRegisterBinding
+import com.example.smartpark.ui.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
 

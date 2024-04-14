@@ -1,12 +1,13 @@
-package com.example.smartpark
+package com.example.smartpark.data.network
 
-import com.example.smartpark.model.LoginResponseData
+import com.example.smartpark.model.LoginResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
-interface ApiInterface {
+interface ApiService {
     @FormUrlEncoded
     @POST("realms/parkingSI/protocol/openid-connect/token")
     fun login(
@@ -15,5 +16,5 @@ interface ApiInterface {
         @Field("client_id") clientId: String,
         @Field("scope") scope: String,
         @Field("grant_type") grantType: String
-    ): Call<LoginResponseData>
+    ): Call<LoginResponse>
 }

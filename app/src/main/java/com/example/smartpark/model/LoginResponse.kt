@@ -1,6 +1,6 @@
 package com.example.smartpark.model
 
-data class LoginResponseData(
+data class LoginResponse(
     val access_token: String,
     val expires_in: Int,
     val id_token: String,
