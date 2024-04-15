@@ -2,23 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/mi_home"
         android:title="Home"
         android:enabled="true"
         android:icon="@drawable/home"
         />
     <item
-        android:id="@+id/sessions"
+        android:id="@+id/mi_sessions"
         android:title="Sessions"
         android:enabled="true"
         android:icon="@drawable/favourite"/>
     <item
-        android:id="@+id/map"
+        android:id="@+id/placeholder"
+        android:title=""
+        android:enabled="false"
+        />
+    <item
+        android:id="@+id/mi_map"
         android:title="Map"
         android:enabled="true"
         android:icon="@drawable/map"/>
     <item
-        android:id="@+id/profile"
+        android:id="@+id/mi_profile"
         android:title="Profile"
         android:enabled="true"
         android:icon="@drawable/profile"/>

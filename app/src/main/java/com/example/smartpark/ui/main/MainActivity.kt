@@ -1,16 +1,11 @@
 package com.example.smartpark.ui.main
 
-import android.R
-import android.graphics.Color
-import android.graphics.PorterDuff
+import com.example.smartpark.R
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.smartpark.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +32,8 @@ class MainActivity : AppCompatActivity() {
             finish()
         }*/
 
-
+        //binding.bottomNavigationView.background = null
+        //binding.bottomNavigationView.menu.getItem(2).isEnabled = false
 
 
 
