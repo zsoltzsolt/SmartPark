@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
     private val preferencesManager: PreferencesManager by lazy {
         PreferencesManager.getInstance(applicationContext)
     }
-    
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
