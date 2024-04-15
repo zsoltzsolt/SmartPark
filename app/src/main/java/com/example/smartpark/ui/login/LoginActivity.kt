@@ -3,6 +3,7 @@ package com.example.smartpark.ui.login
 import PreferencesManager
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -21,9 +22,19 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (preferencesManager.getAccessToken().isNotEmpty()) {
-            navigateToMainActivity()
+        loginViewModel.secure()
+
+        loginViewModel.secureResponse.observe(this) { response ->
+            Log.d("Response", response);
+            if (loginViewModel.secureResponse.value?.toInt() == 200) {
+                navigateToMainActivity()
+            }
         }
+
+
+
+
+
 
         binding.btnLogin.setOnClickListener {
             val username = binding.tieEmail.text.toString()

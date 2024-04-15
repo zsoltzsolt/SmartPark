@@ -26,23 +26,16 @@ class MainActivity : AppCompatActivity() {
         )
 
         binding.btnLogout.setOnClickListener{
-            /*val sharedPreferences = this.getSharedPreferences("MyPrefs", MODE_PRIVATE)
+            val sharedPreferences = this.getSharedPreferences("MyPrefs", MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             editor.remove("access_token")
             editor.apply()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-            finish()*/
-            mainViewModel.secure()
+            finish()
         }
 
-        mainViewModel.secureResponse.observe(this) { response ->
-            Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show()
-        }
 
-        mainViewModel.loginError.observe(this) { error ->
-            Toast.makeText(this, "Error1", Toast.LENGTH_SHORT).show()
-        }
 
     }
 
