@@ -1,8 +1,9 @@
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.smartpark.util.Constants
+import com.example.smartpark.util.TokenProvider
 
-class PreferencesManager private constructor(context: Context) {
+class PreferencesManager private constructor(context: Context) : TokenProvider {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
 
@@ -12,7 +13,7 @@ class PreferencesManager private constructor(context: Context) {
         editor.apply()
     }
 
-    fun getAccessToken(): String {
+    override fun getAccessToken(): String {
         return sharedPreferences.getString(Constants.ACCESS_TOKEN_KEY, "") ?: ""
     }
 

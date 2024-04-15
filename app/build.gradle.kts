@@ -18,6 +18,7 @@ android {
     }
 
     val keycloakBaseUrl: String = gradleLocalProperties(rootDir).getProperty("keycloakBaseUrl")
+    val baseUrl: String = gradleLocalProperties(rootDir).getProperty("baseUrl")
 
     defaultConfig {
         applicationId = "com.example.smartpark"
@@ -40,6 +41,7 @@ android {
         }
         getByName("debug") {
             buildConfigField("String", "keycloakBaseUrl", keycloakBaseUrl)
+            buildConfigField("String", "baseUrl", baseUrl)
         }
     }
     compileOptions {
