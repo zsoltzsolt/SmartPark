@@ -16,7 +16,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navbar"
         app:labelVisibilityMode="selected"
+        android:background="#1D1F24"
+        app:itemTextColor="@color/white"
         app:itemIconTint="@drawable/menu_item_bg"
+        app:theme="@style/AppTheme.NoRipple"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
