@@ -5,5 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.SmartPark" parent="Base.Theme.SmartPark" />
+    <style name="Theme.SmartPark" parent="Base.Theme.SmartPark">
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>

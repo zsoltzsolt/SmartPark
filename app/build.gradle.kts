@@ -1,11 +1,24 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
+
+
 
 android {
     namespace = "com.example.smartpark"
     compileSdk = 34
+    buildFeatures {
+        buildConfig = true
+        viewBinding = true
+    }
+
+    val keycloakBaseUrl: String = gradleLocalProperties(rootDir).getProperty("keycloakBaseUrl")
+    val baseUrl: String = gradleLocalProperties(rootDir).getProperty("baseUrl")
 
     defaultConfig {
         applicationId = "com.example.smartpark"
@@ -17,6 +30,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -24,6 +38,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        getByName("debug") {
+            buildConfigField("String", "keycloakBaseUrl", keycloakBaseUrl)
+            buildConfigField("String", "baseUrl", baseUrl)
         }
     }
     compileOptions {
@@ -33,7 +51,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
 }
+
+
 
 dependencies {
 
@@ -41,7 +62,14 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1")
+    implementation("androidx.activity:activity-ktx:1.2.3")
+    implementation("com.google.dagger:hilt-android:2.51.1")
+
 }
