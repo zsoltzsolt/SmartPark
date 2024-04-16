@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,43 +8,61 @@
     android:background="#0C1615"
     tools:context=".ui.main.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/coordinator_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomNavigationView"
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:fabCradleMargin="5dp"
-        android:backgroundTint="#1D1F24"
-        android:background="#1D1F24"
-        app:fabCradleRoundedCornerRadius="20dp"
-        android:theme="@style/Theme.MaterialComponents">
+        android:layout_height="90sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        >
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:menu="@menu/bottom_navbar"
+            android:layout_gravity="bottom"
+            android:background="#1D1F24"
+            android:backgroundTint="#1D1F24"
+            android:theme="@style/Theme.MaterialComponents"
+            app:fabCradleMargin="5dp"
+            app:fabCradleRoundedCornerRadius="20dp">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@android:color/transparent"
+                app:itemIconTint="@drawable/menu_item_bg"
+                app:itemTextColor="@color/white"
+                app:labelVisibilityMode="selected"
+                app:menu="@menu/bottom_navbar"
+                app:theme="@style/AppTheme.NoRipple" />
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            app:labelVisibilityMode="selected"
-            android:background="@android:color/transparent"
-            app:itemTextColor="@color/white"
-            app:itemIconTint="@drawable/menu_item_bg"
-            app:theme="@style/AppTheme.NoRipple"
-            />
+            android:backgroundTint="@color/white"
+            android:contentDescription="SCAN"
+            android:src="@drawable/scan"
+            android:theme="@style/Theme.MaterialComponents"
+            app:layout_anchor="@id/bottomNavigationView" />>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-
-    </com.google.android.material.bottomappbar.BottomAppBar>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_anchor="@id/bottomNavigationView"
-        android:backgroundTint="@color/white"
-        android:src="@drawable/scan"
-        android:theme="@style/Theme.MaterialComponents"
-        android:contentDescription="TODO" />
-
-
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
