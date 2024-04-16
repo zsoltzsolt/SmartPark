@@ -28,6 +28,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnPark.isEnabled = false
+
         val buttons = listOf(
             binding.button01,
             binding.button02,
@@ -49,8 +51,13 @@ class HomeFragment : Fragment() {
                 selectedButton = buttons.indexOf(button)
                 it.setBackgroundResource(R.drawable.spots_button_background)
                 (it as Button).setTextColor(resources.getColor(R.color.robin_egg_blue))
+                binding.btnPark.isEnabled = true
+                binding.btnPark.text = "Park at slot ${selectedButton + 1}"
             }
         }
+
+
+
     }
 
     override fun onDestroyView() {
