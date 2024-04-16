@@ -28,8 +28,8 @@
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
-        
-        
+
+
         <ImageView
             android:id="@+id/iv_spots"
             android:layout_width="match_parent"
@@ -38,6 +38,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             app:layout_constraintBottom_toTopOf="@id/btn_park"
             app:layout_constraintStart_toStartOf="parent"
+            android:adjustViewBounds="true"
             />
 
         <LinearLayout
