@@ -3,18 +3,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.fragments.HomeFragment"
-    android:background="@drawable/home_gradient_background">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/home_gradient_background"
+    tools:context=".ui.main.fragments.HomeFragment">
 
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Parking slots"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="45sp"
-        />
+        android:layout_height="match_parent"
+        android:paddingHorizontal="20sp"
+        >
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45sp"
+            android:fontFamily="@font/lato"
+            android:gravity="center_horizontal"
+            android:text="Parking slots"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+        
+        
+        <ImageView
+            android:id="@+id/iv_spots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/parking_spots"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintBottom_toTopOf="@id/btn_register"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="20sp"
+            android:background="@drawable/btn_gradient"
+            android:clickable="true"
+            android:text="Park at slot 6"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
