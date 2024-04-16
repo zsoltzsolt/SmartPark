@@ -8,4 +8,9 @@
     <style name="Theme.SmartPark" parent="Base.Theme.SmartPark">
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <style name="AppTheme.NoRipple" parent="Theme.MaterialComponents.Light">
+        <item name="android:colorControlHighlight">#1D1F24</item>
+    </style>
+
 </resources>

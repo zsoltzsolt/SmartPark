@@ -17,6 +17,7 @@ class LoginActivity : AppCompatActivity() {
         PreferencesManager.getInstance(applicationContext)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
