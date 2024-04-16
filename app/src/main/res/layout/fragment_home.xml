@@ -56,29 +56,41 @@
                 android:layout_marginRight="10sp"
                 android:orientation="vertical">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button01"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
                     android:layout_weight="1"
                     android:text="01"
+                    android:textColor="@color/white"
                     android:background="@android:color/transparent" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button03"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
                     android:layout_weight="1"
                     android:text="03"
+                    android:textColor="@color/white"
                     android:background="@android:color/transparent"/>
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button05"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:text="05"
                     android:background="@android:color/transparent"/>
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button07"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:text="07"
                     android:background="@android:color/transparent"/>
 
@@ -92,29 +104,41 @@
                 android:layout_marginLeft="10sp"
                 android:layout_weight="1">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button02"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:text="02"
                     android:background="@android:color/transparent"/>
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button04"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:text="04"
                     android:background="@android:color/transparent"/>
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button06"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:text="06"
                     android:background="@android:color/transparent"/>
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button08"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:text="08"
                     android:background="@android:color/transparent"/>
 
