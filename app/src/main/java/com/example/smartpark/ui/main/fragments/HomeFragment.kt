@@ -8,12 +8,17 @@ import android.widget.Button
 import com.example.smartpark.R
 import com.example.smartpark.data.network.WebSocketManager
 import com.example.smartpark.databinding.FragmentHomeBinding
+import com.example.smartpark.model.WebSocketResponse
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private var selectedButton: Int = -1
+
+    private val webSocketManager by lazy {
+        context?.let { WebSocketManager(it) }
+    }
 
 
     override fun onCreateView(
@@ -27,11 +32,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val webSocketManager = WebSocketManager()
-
         val webSocketUrl = "wss://parking.gonemesis.org/config"
 
-        webSocketManager.connectToWebSocket(webSocketUrl)
+        webSocketManager?.connectToWebSocket(webSocketUrl){ response ->
+
+            updateSpotButtons(response)
+
+            Log.d("WebSocket", "Received response: $response")
+        }
 
 
         binding.btnPark.isEnabled = false
@@ -59,6 +67,42 @@ class HomeFragment : Fragment() {
                 (it as Button).setTextColor(resources.getColor(R.color.robin_egg_blue))
                 binding.btnPark.isEnabled = true
                 binding.btnPark.text = "Park at slot ${selectedButton + 1}"
+            }
+        }
+    }
+
+    private fun updateSpotButtons(response: WebSocketResponse) {
+        val spotButtons = listOf(
+            binding.spot1,
+            binding.spot2,
+            binding.spot3,
+            binding.spot4,
+            binding.spot5,
+            binding.spot6,
+            binding.spot7,
+            binding.spot8
+        )
+
+        for ((index, button) in spotButtons.withIndex()) {
+            val isSpotOccupied = when (index) {
+                0 -> response.parkingSpot1
+                1 -> response.parkingSpot2
+                2 -> response.parkingSpot3
+                3 -> response.parkingSpot4
+                4 -> response.parkingSpot5
+                5 -> response.parkingSpot6
+                6 -> response.parkingSpot7
+                7 -> response.parkingSpot8
+                else -> false
+            }
+
+            if (isSpotOccupied) {
+                if(index % 2 == 0)
+                    button.setImageResource(R.drawable.car2)
+                else
+                    button.setImageResource(R.drawable.car)
+            } else {
+                button.setImageDrawable(null)
             }
         }
     }
