@@ -83,6 +83,17 @@ class HomeFragment : Fragment() {
             binding.spot8
         )
 
+        val buttons = listOf(
+            binding.button01,
+            binding.button02,
+            binding.button03,
+            binding.button04,
+            binding.button05,
+            binding.button06,
+            binding.button07,
+            binding.button08
+        )
+
         for ((index, button) in spotButtons.withIndex()) {
             val isSpotOccupied = when (index) {
                 0 -> response.parkingSpot1
@@ -97,8 +108,11 @@ class HomeFragment : Fragment() {
             }
 
             if (isSpotOccupied) {
-                if(index % 2 == 0)
+                if(index % 2 == 0) {
                     button.setImageResource(R.drawable.car2)
+                    buttons.get(index).setBackgroundResource(android.R.color.transparent)
+                    buttons.get(index).setTextColor(getResources().getColor(R.color.white))
+                }
                 else
                     button.setImageResource(R.drawable.car)
             } else {
