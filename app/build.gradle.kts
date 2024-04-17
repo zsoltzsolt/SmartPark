@@ -6,6 +6,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+
 }
 
 
@@ -73,5 +74,15 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1")
     implementation("androidx.activity:activity-ktx:1.2.3")
     implementation("com.google.dagger:hilt-android:2.51.1")
+    implementation("org.hildan.krossbow:krossbow-stomp-core:6.0.0")
+    implementation("org.hildan.krossbow:krossbow-websocket-builtin:6.0.0")
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("org.hildan.krossbow:krossbow-websocket-okhttp:6.0.0")
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("io.ktor:ktor-client-android:1.6.4")
+    implementation("io.ktor:ktor-client-websockets:1.6.4")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+
+
 
 }

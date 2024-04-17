@@ -1,21 +1,20 @@
-import android.content.Context
+import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.core.content.ContextCompat
 import com.example.smartpark.R
+import com.example.smartpark.data.network.WebSocketManager
 import com.example.smartpark.databinding.FragmentHomeBinding
-import com.example.smartpark.ui.main.MainActivity
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private var selectedButton: Int = -1
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +26,13 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val webSocketManager = WebSocketManager()
+
+        val webSocketUrl = "wss://parking.gonemesis.org/config"
+
+        webSocketManager.connectToWebSocket(webSocketUrl)
+
 
         binding.btnPark.isEnabled = false
 
@@ -55,9 +61,6 @@ class HomeFragment : Fragment() {
                 binding.btnPark.text = "Park at slot ${selectedButton + 1}"
             }
         }
-
-
-
     }
 
     override fun onDestroyView() {
