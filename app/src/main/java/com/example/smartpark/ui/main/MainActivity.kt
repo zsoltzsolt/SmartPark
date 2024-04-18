@@ -1,12 +1,13 @@
 package com.example.smartpark.ui.main
 
+
+import HomeFragment
 import com.example.smartpark.R
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.smartpark.databinding.ActivityMainBinding
-import com.example.smartpark.ui.main.fragments.HomeFragment
 import com.example.smartpark.ui.main.fragments.MapsFragment
 import com.example.smartpark.ui.main.fragments.ProfileFragment
 import com.example.smartpark.ui.main.fragments.SessionsFragment
@@ -25,19 +26,14 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        /*binding.btnLogout.setOnClickListener{
-            val sharedPreferences = this.getSharedPreferences("MyPrefs", MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            editor.remove("access_token")
-            editor.apply()
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }*/
 
         //binding.bottomNavigationView.background = null
         //binding.bottomNavigationView.menu.getItem(2).isEnabled = false
         Toast.makeText(this, "Okkk", Toast.LENGTH_SHORT).show()
+        val fragmentManager = supportFragmentManager
+        val transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.frame_layout, HomeFragment())
+        transaction.commit()
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {

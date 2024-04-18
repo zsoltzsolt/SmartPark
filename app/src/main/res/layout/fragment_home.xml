@@ -1,14 +1,283 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/home_gradient_background"
     tools:context=".ui.main.fragments.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:paddingHorizontal="20sp">
+
+
+        <ImageButton
+            android:layout_width="27sp"
+            android:layout_height="27sp"
+            android:src="@drawable/back_arrow"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="25sp"
+            android:background="@android:color/transparent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/lato_light"
+            android:gravity="center_horizontal"
+            android:text="Parking slots"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:layout_marginTop="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/iv_spots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15sp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/parking_spots_2"
+            app:layout_constraintBottom_toTopOf="@id/btn_park"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_spots"
+            app:layout_constraintEnd_toEndOf="@+id/iv_spots"
+            app:layout_constraintStart_toStartOf="@+id/iv_spots"
+            app:layout_constraintTop_toTopOf="@+id/iv_spots">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20sp"
+                android:layout_marginRight="10sp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button01"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/lato_light"
+                    android:text="01"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button03"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/lato_light"
+                    android:text="03"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button05"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/lato_light"
+                    android:text="05"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button07"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/lato_light"
+                    android:text="07"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="20sp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button02"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/lato_light"
+                    android:text="02"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button04"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/lato_light"
+                    android:text="04"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button06"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/lato_light"
+                    android:text="06"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button08"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="5sp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/lato_light"
+                    android:text="08"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_spots"
+            app:layout_constraintEnd_toEndOf="@+id/iv_spots"
+            app:layout_constraintStart_toStartOf="@+id/iv_spots"
+            app:layout_constraintTop_toTopOf="@+id/iv_spots">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/spot1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/car2" />
+
+                <ImageButton
+                    android:id="@+id/spot3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent" />
+
+                <ImageButton
+                    android:id="@+id/spot5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent" />
+
+                <ImageButton
+                    android:id="@+id/spot7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/spot2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/car" />
+
+                <ImageButton
+                    android:id="@+id/spot4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent" />
+
+                <ImageButton
+                    android:id="@+id/spot6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent" />
+
+                <ImageButton
+                    android:id="@+id/spot8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_park"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="20sp"
+            android:background="@drawable/btn_gradient"
+            android:clickable="true"
+            android:fontFamily="@font/lato"
+            android:text="Select a slot to park"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0C1615"
+    android:background="#162826"
     tools:context=".ui.main.MainActivity">
 
     <FrameLayout
@@ -46,7 +46,7 @@
                 android:background="@android:color/transparent"
                 app:itemIconTint="@drawable/menu_item_bg"
                 app:itemTextColor="@color/white"
-                app:labelVisibilityMode="selected"
+                app:labelVisibilityMode="labeled"
                 app:menu="@menu/bottom_navbar"
                 app:theme="@style/AppTheme.NoRipple" />
 
