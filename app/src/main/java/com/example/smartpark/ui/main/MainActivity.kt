@@ -1,13 +1,13 @@
 package com.example.smartpark.ui.main
 
 
-import HomeFragment
 import com.example.smartpark.R
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.smartpark.databinding.ActivityMainBinding
+import com.example.smartpark.ui.main.fragments.HomeFragment
 import com.example.smartpark.ui.main.fragments.MapsFragment
 import com.example.smartpark.ui.main.fragments.ProfileFragment
 import com.example.smartpark.ui.main.fragments.SessionsFragment
