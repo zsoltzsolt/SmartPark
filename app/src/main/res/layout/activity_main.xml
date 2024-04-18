@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#162826"
+    android:background="@android:color/transparent"
     tools:context=".ui.main.MainActivity">
 
     <FrameLayout
         android:id="@+id/frame_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -62,7 +62,8 @@
             android:contentDescription="SCAN"
             android:src="@drawable/scan"
             android:theme="@style/Theme.MaterialComponents"
-            app:layout_anchor="@id/bottomNavigationView" />>
+            app:layout_anchor="@id/bottomNavigationView" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
