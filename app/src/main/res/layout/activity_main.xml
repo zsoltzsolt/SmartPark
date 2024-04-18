@@ -46,7 +46,7 @@
                 android:background="@android:color/transparent"
                 app:itemIconTint="@drawable/menu_item_bg"
                 app:itemTextColor="@color/white"
-                app:labelVisibilityMode="selected"
+                app:labelVisibilityMode="labeled"
                 app:menu="@menu/bottom_navbar"
                 app:theme="@style/AppTheme.NoRipple" />
 

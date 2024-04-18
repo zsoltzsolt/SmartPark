@@ -33,6 +33,7 @@
             android:layout_marginTop="25sp"
             android:text="Welcome back!\nGlad to see you, Again!"
             android:textColor="#FFFFFF"
+            android:fontFamily="@font/lato"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -107,6 +108,7 @@
             android:layout_height="17sp"
             android:layout_marginTop="20sp"
             android:layout_marginRight="10sp"
+            android:fontFamily="@font/lato"
             android:background="@android:color/transparent"
             android:clickable="true"
             android:gravity="end"
@@ -122,6 +124,7 @@
             android:layout_marginTop="20sp"
             android:background="@drawable/btn_gradient"
             android:clickable="true"
+            android:fontFamily="@font/lato"
             android:text="LOGIN" />
 
         <LinearLayout
@@ -145,6 +148,7 @@
                 android:layout_marginTop="30sp"
                 android:gravity="center"
                 android:text="Or Login with"
+                android:fontFamily="@font/lato"
                 android:layout_weight="1"
                 android:textColor="#03DABB" />
 
@@ -208,6 +212,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:fontFamily="@font/lato"
             android:text="Don't have an account? "
             android:textColor="@color/white" />
 
@@ -218,6 +223,7 @@
             android:background="@android:color/transparent"
             android:clickable="true"
             android:text="Register Now"
+            android:fontFamily="@font/lato"
             android:textAllCaps="false"
             android:textColor="#03DABB"
             android:textSize="14sp" />
