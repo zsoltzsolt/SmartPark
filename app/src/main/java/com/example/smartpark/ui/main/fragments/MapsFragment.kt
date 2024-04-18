@@ -1,7 +1,11 @@
 package com.example.smartpark.ui.main.fragments
 
+import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.Matrix
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +13,7 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.smartpark.R
+import com.example.smartpark.ui.MapStyle
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -19,6 +24,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.maps.android.PolyUtil
@@ -31,7 +37,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
-    private val uptLocation = LatLng(45.7475, 21.2262) 
+    private val uptLocation = LatLng(45.7475, 21.2262)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -48,8 +54,13 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        mMap.addMarker(MarkerOptions().position(uptLocation).title("Universitatea Politehnica Timișoara"))
+        mMap.addMarker(MarkerOptions().position(uptLocation).title("Universitatea Politehnica Timisoara"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(uptLocation, 17f))
+        mMap.isBuildingsEnabled = true
+        mMap.isMyLocationEnabled = true
+        //mMap.isTrafficEnabled = true
+        mMap.setMapStyle(MapStyleOptions(MapStyle.json))
+
         setupLocationUpdates()
     }
 
@@ -114,8 +125,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun drawPolyline(path: List<LatLng>) {
-        mMap.clear()  // Clear previous markers or paths
-        mMap.addPolyline(PolylineOptions().addAll(path).width(12f).color(Color.BLUE).geodesic(true))
+        mMap.clear()
+        mMap.addPolyline(PolylineOptions().addAll(path).width(12f).color(Color.rgb(3,218,187)).geodesic(true))
         mMap.addMarker(MarkerOptions().position(uptLocation).title("UPT"))
     }
 
