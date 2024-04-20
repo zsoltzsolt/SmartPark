@@ -82,7 +82,7 @@ dependencies {
     implementation("io.ktor:ktor-client-android:1.6.4")
     implementation("io.ktor:ktor-client-websockets:1.6.4")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
-
-
+    implementation("com.google.maps.android:android-maps-utils:2.3.0")
+    implementation("com.google.android.gms:play-services-location:18.0.0")
 
 }

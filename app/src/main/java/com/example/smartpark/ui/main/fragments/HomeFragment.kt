@@ -1,3 +1,5 @@
+package com.example.smartpark.ui.main.fragments
+
 import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.util.Log
@@ -124,5 +126,6 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        webSocketManager?.closeWebSocket()
     }
 }
