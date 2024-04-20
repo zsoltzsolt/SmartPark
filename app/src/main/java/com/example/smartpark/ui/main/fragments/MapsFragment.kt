@@ -47,6 +47,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -66,8 +67,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
     private fun setupLocationUpdates() {
         val locationRequest = LocationRequest.create()?.apply {
-            interval = 2000
-            fastestInterval = 1000
+            interval = 500
+            fastestInterval = 250
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }
 
@@ -76,7 +77,6 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
                 locationResult ?: return
                 for (location in locationResult.locations){
                     val currentLocation = LatLng(location.latitude, location.longitude)
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 17f))
                     fetchDirections(getDirectionsUrl(currentLocation, uptLocation))
                 }
             }
