@@ -154,6 +154,7 @@
                     android:layout_marginTop="20sp"
                     android:background="@drawable/btn_gradient"
                     android:clickable="true"
+                    android:enabled="true"
                     android:text="Register"
                     android:textAllCaps="false" />
 
