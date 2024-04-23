@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.smartpark.ui.main.MainActivity
 import com.example.smartpark.databinding.ActivityLoginBinding
+import com.example.smartpark.ui.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -32,11 +33,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-
-
-
-
-
         binding.btnLogin.setOnClickListener {
             val username = binding.tieEmail.text.toString()
             val password = binding.tiePassword.text.toString()
@@ -51,6 +47,11 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginError.observe(this) { error ->
             showToast(error)
         }
+
+        binding.btnRegister.setOnClickListener {
+            navigateToRegisterActivity()
+        }
+
     }
 
     private fun saveAccessToken(token: String) {
@@ -59,6 +60,11 @@ class LoginActivity : AppCompatActivity() {
 
     private fun navigateToMainActivity() {
         startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
+
+    private fun navigateToRegisterActivity(){
+        startActivity(Intent(this, RegisterActivity::class.java))
         finish()
     }
 
