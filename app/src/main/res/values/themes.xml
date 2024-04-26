@@ -13,4 +13,9 @@
         <item name="android:colorControlHighlight">#1D1F24</item>
     </style>
 
+    <style name="OfferButton">
+        <item name="android:background">@drawable/offer_button_background</item>
+    </style>
+
+
 </resources>

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.smartpark.databinding.ActivityMainBinding
 import com.example.smartpark.ui.main.fragments.HomeFragment
 import com.example.smartpark.ui.main.fragments.MapsFragment
+import com.example.smartpark.ui.main.fragments.OfferFragment
 import com.example.smartpark.ui.main.fragments.ProfileFragment
 import com.example.smartpark.ui.main.fragments.SessionsFragment
 
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
-                    transaction.replace(R.id.frame_layout, ProfileFragment())
+                    transaction.replace(R.id.frame_layout, OfferFragment())
                     transaction.commit()
                     true
                 }
