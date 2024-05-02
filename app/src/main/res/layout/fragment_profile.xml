@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_profile"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_jungle_green"
+    android:background="@color/eerie_black"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.fragments.ProfileFragment">
 
@@ -42,10 +43,12 @@
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10sp"
-            android:text="Elon Musk"
+            android:layout_marginTop="20sp"
+            android:fontFamily="@font/lato"
+            android:text="Diriczi Zsolt"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,32 +56,66 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_subscriptions"
-            android:layout_marginTop="50sp"
-            android:layout_marginHorizontal="50sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_name"
-            app:layout_constraintStart_toStartOf="parent"
-            android:drawableStart="@drawable/subscriptions_icon"
+            android:layout_marginHorizontal="30sp"
+            android:layout_marginTop="50sp"
+            android:backgroundTint="@color/eerie_black"
+            android:drawableStart="@drawable/material_symbols_privacy_tip_outline"
             android:drawableTint="@color/white"
+            android:fontFamily="@font/lato"
+            android:text="My Subscriptions"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:backgroundTint="@color/dark_jungle_green"
-            android:text="MY SUBSCRIPTIONS"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_help"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30sp"
+            android:layout_marginTop="10sp"
+            android:backgroundTint="@color/eerie_black"
+            android:drawableStart="@drawable/mdi_question_mark_circle_outline"
+            android:drawableTint="@color/white"
+            android:fontFamily="@font/lato"
+            android:text="Help &amp; Support"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_subscriptions" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_terms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30sp"
+            android:layout_marginTop="10sp"
+            android:backgroundTint="@color/eerie_black"
+            android:drawableStart="@drawable/tabler_circle_letter_i"
+            android:drawableTint="@color/white"
+            android:fontFamily="@font/lato"
+            android:text="Terms &amp; Policies"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_help" />
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLogout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LOGOUT"
-            android:paddingHorizontal="30sp"
+            android:layout_marginHorizontal="60sp"
+            android:layout_marginTop="20sp"
             android:backgroundTint="@color/gunmetal"
+            android:fontFamily="@font/lato"
+            android:text="LOGOUT"
             android:textColor="@color/cardinal"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/btn_terms" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

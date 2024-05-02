@@ -92,5 +92,8 @@ dependencies {
     implementation("com.stripe:stripe-android:20.1.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
 
+    implementation("androidx.navigation:navigation-fragment-ktx:2.4.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.4.0")
+
 
 }
