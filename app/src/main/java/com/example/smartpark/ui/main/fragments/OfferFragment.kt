@@ -49,8 +49,8 @@ class OfferFragment : Fragment() {
         initializePaymentSheet()
 
         binding.btnSubscribe.setOnClickListener {
-            val priceId = BuildConfig.monthlyPriceId
-            val licensePlate = "TM35ZIR"
+            val priceId = if (selectedButton == 0) BuildConfig.monthlyPriceId else BuildConfig.yearlyPriceId
+            val licensePlate = binding.tiePlate.text.toString()
             coroutineScope.launch {
                 val paymentIntentClientSecret = createSubscription(priceId, licensePlate)
                 paymentIntentClientSecret?.let {
@@ -111,7 +111,7 @@ class OfferFragment : Fragment() {
             .toRequestBody("application/json".toMediaType())
 
         val request = Request.Builder()
-            .url(BuildConfig.baseUrl+"/api/v1/payment/subscribe")
+            .url("https://parking.gonemesis.org/api/v1/payment/subscribe")
             .post(body)
             .addHeader("Authorization", "Bearer $accessToken")
             .build()
