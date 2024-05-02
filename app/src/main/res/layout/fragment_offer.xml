@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_jungle_green"
+    tools:context=".ui.main.fragments.OfferFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_car"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/red_car"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_offer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/dark_jungle_green"
+                android:elevation="0dp"
+                app:cardCornerRadius="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_car">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20sp">
+
+                    <LinearLayout
+                        android:id="@+id/ll_offers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/btn_img_monthly"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="7sp"
+                            android:layout_marginTop="30sp"
+                            android:padding="20sp"
+                            android:layout_weight="1"
+                            android:src="@drawable/monthly_offer"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/btn_img_yearly"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="7sp"
+                            android:layout_marginTop="30sp"
+                            android:padding="20sp"
+                            android:layout_weight="1"
+                            android:src="@drawable/yearly_offer"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/ti_plate"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                        android:layout_width="200sp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/ll_offers"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="20sp"
+                        android:layout_marginHorizontal="100sp"
+                        app:boxStrokeWidth="0dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tie_plate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_rounded_corners"
+                            android:inputType="textCapCharacters"
+                            android:maxLength="7"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+                            android:gravity="center"
+                            android:textSize="20sp"
+                            android:padding="8dp"
+                            android:letterSpacing="0.5"
+                            android:textColor="@android:color/black"
+                            android:importantForAccessibility="yes"
+                        />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_subscribe"
+                        android:layout_width="match_parent"
+                        android:layout_height="53dp"
+                        android:layout_marginHorizontal="20sp"
+                        android:layout_marginTop="20sp"
+                        android:background="@drawable/btn_gradient"
+                        android:clickable="true"
+                        android:fontFamily="@font/lato"
+                        android:text="Subscribe"
+                        android:textAllCaps="false"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ti_plate" />
+
+                    <TextView
+                        android:id="@+id/tv_subscribe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15sp"
+                        android:layout_marginBottom="90sp"
+                        android:elevation="20sp"
+                        android:fontFamily="@font/lato"
+                        android:gravity="center_horizontal"
+                        android:text="*$149.99 billed annually. Cancel anytime."
+                        android:textColor="@color/quick_silver"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_subscribe" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato"
+                android:text="20% OFF"
+                android:textColor="@color/white"
+                android:textSize="45sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tv_get"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_get"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20sp"
+                android:fontFamily="@font/lato"
+                android:text="Get this exclusive limited offer!"
+                android:textColor="@color/white"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/cv_offer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</FrameLayout>

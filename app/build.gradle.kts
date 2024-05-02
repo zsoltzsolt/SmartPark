@@ -21,6 +21,8 @@ android {
 
     val keycloakBaseUrl: String = gradleLocalProperties(rootDir).getProperty("keycloakBaseUrl")
     val baseUrl: String = gradleLocalProperties(rootDir).getProperty("baseUrl")
+    val monthlyPriceId: String = gradleLocalProperties(rootDir).getProperty("monthlyPriceId")
+    val yearlyPriceId: String = gradleLocalProperties(rootDir).getProperty("yearlyPriceId")
 
     defaultConfig {
         applicationId = "com.example.smartpark"
@@ -44,6 +46,8 @@ android {
         getByName("debug") {
             buildConfigField("String", "keycloakBaseUrl", keycloakBaseUrl)
             buildConfigField("String", "baseUrl", baseUrl)
+            buildConfigField("String", "monthlyPriceId", monthlyPriceId)
+            buildConfigField("String", "yearlyPriceId", yearlyPriceId)
         }
     }
     compileOptions {
@@ -84,5 +88,9 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
     implementation("com.google.maps.android:android-maps-utils:2.3.0")
     implementation("com.google.android.gms:play-services-location:18.0.0")
+    // Stripe
+    implementation("com.stripe:stripe-android:20.1.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+
 
 }
