@@ -9,11 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.smartpark.R
-import com.example.smartpark.ui.main.fragments.placeholder.PlaceholderContent
+import com.example.smartpark.model.SubscriptionItem
 
-/**
- * A fragment representing a list of Items.
- */
+
 class SubscriptionFragment : Fragment() {
 
     private var columnCount = 1
@@ -32,14 +30,21 @@ class SubscriptionFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_subscription_list, container, false)
 
-        // Set the adapter
+        val subscriptionItems = listOf(
+            SubscriptionItem("1", "Subscription 1"),
+            SubscriptionItem("2", "Subscription 2"),
+            SubscriptionItem("1", "Subscription 1"),
+            SubscriptionItem("2", "Subscription 2"),
+            SubscriptionItem("1", "Subscription 1"),
+            SubscriptionItem("2", "Subscription 2"),
+            SubscriptionItem("1", "Subscription 1"),
+            SubscriptionItem("2", "Subscription 2"),
+        )
+
         if (view is RecyclerView) {
             with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = MyItemRecyclerViewAdapter(PlaceholderContent.ITEMS)
+                layoutManager = LinearLayoutManager(context)
+                adapter = MyItemRecyclerViewAdapter(subscriptionItems)
             }
         }
         return view
