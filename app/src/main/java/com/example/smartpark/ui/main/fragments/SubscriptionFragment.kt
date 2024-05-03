@@ -8,13 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.example.smartpark.R
+import com.example.smartpark.model.ProfileResponse
 import com.example.smartpark.model.SubscriptionItem
 
 
 class SubscriptionFragment : Fragment() {
 
     private var columnCount = 1
+
+    private val profileViewModel: ProfileViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,23 +34,21 @@ class SubscriptionFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_subscription_list, container, false)
 
-        val subscriptionItems = listOf(
-            SubscriptionItem("1", "Subscription 1"),
-            SubscriptionItem("2", "Subscription 2"),
-            SubscriptionItem("1", "Subscription 1"),
-            SubscriptionItem("2", "Subscription 2"),
-            SubscriptionItem("1", "Subscription 1"),
-            SubscriptionItem("2", "Subscription 2"),
-            SubscriptionItem("1", "Subscription 1"),
-            SubscriptionItem("2", "Subscription 2"),
-        )
+        var profile: ProfileResponse? = null
 
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = LinearLayoutManager(context)
-                adapter = MyItemRecyclerViewAdapter(subscriptionItems)
+        profileViewModel.me()
+
+        profileViewModel.profileResponse.observe(viewLifecycleOwner) { response ->
+            profile = response
+            if (view is RecyclerView) {
+                with(view) {
+                    layoutManager = LinearLayoutManager(context)
+                    adapter = MyItemRecyclerViewAdapter(profile!!.subscriptions)
+                }
             }
+
         }
+
         return view
     }
 

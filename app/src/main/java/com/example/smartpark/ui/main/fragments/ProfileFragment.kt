@@ -71,7 +71,7 @@ class ProfileFragment : Fragment() {
 
             var fragmentTransaction: FragmentTransaction =
                 activity?.supportFragmentManager?.beginTransaction()!!
-            fragmentTransaction.replace(com.example.smartpark.R.id.fl_profile, OfferFragment() )
+            fragmentTransaction.replace(com.example.smartpark.R.id.fl_profile, SubscriptionFragment() )
             fragmentTransaction.commit()
         }
     }
