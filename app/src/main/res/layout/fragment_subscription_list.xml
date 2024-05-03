@@ -9,4 +9,7 @@
     app:layoutManager="LinearLayoutManager"
     android:background="@color/eerie_black"
     tools:context=".ui.main.fragments.SubscriptionFragment"
-    tools:listitem="@layout/fragment_subscription"/>
+    tools:listitem="@layout/fragment_subscription">
+
+</androidx.recyclerview.widget.RecyclerView>
+

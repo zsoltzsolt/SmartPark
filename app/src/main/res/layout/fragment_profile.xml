@@ -36,7 +36,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/red_car" />
+                android:src="@drawable/red_car_background" />
         </androidx.cardview.widget.CardView>
 
         <TextView

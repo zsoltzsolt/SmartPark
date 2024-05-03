@@ -8,8 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import com.example.smartpark.R
+import com.example.smartpark.databinding.FragmentOfferBinding
+import com.example.smartpark.databinding.FragmentSubscriptionBinding
 import com.example.smartpark.model.ProfileResponse
 import com.example.smartpark.model.SubscriptionItem
 
@@ -19,6 +23,7 @@ class SubscriptionFragment : Fragment() {
     private var columnCount = 1
 
     private val profileViewModel: ProfileViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +39,7 @@ class SubscriptionFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_subscription_list, container, false)
 
+
         var profile: ProfileResponse? = null
 
         profileViewModel.me()
@@ -43,18 +49,22 @@ class SubscriptionFragment : Fragment() {
             if (view is RecyclerView) {
                 with(view) {
                     layoutManager = LinearLayoutManager(context)
-                    adapter = MyItemRecyclerViewAdapter(profile!!.subscriptions)
+                    adapter = MyItemRecyclerViewAdapter(context, profile!!.subscriptions)
                 }
             }
-
         }
 
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+    }
+
     companion object {
 
-        // TODO: Customize parameter argument names
         const val ARG_COLUMN_COUNT = "column-count"
 
         // TODO: Customize parameter initialization

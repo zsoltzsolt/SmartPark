@@ -26,13 +26,17 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icons8_car_96" />
+                    android:id="@+id/car_image"
+                    android:layout_width="75sp"
+                    android:layout_height="75sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/red_car_background" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="20sp"
                     android:orientation="vertical">
 
                     <TextView
@@ -41,8 +45,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center"
-                        android:padding="10sp"
+                        android:layout_marginTop="20sp"
                         android:text="TM28DIR"
+                        android:fontFamily="@font/lato"
+                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
@@ -52,6 +58,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center"
+                        android:fontFamily="@font/lato"
                         android:padding="10sp"
                         android:text="Valid thru 28/12/2024"
                         android:textColor="@color/black"
@@ -73,11 +80,14 @@
                 android:backgroundTint="@color/american_green"
                 >
             <TextView
+                android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  active  "
+                android:text="active"
+                android:paddingHorizontal="10sp"
+                android:paddingVertical="4sp"
                 android:textSize="13sp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 />
             </androidx.cardview.widget.CardView>
 
