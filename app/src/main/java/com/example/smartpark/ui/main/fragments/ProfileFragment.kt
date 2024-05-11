@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import com.example.smartpark.databinding.FragmentProfileBinding
 import com.example.smartpark.model.ProfileResponse
 import com.example.smartpark.ui.login.LoginActivity
+import com.example.smartpark.ui.main.MainActivity
 import com.example.smartpark.ui.register.RegisterViewModel
 import retrofit2.http.Tag
 
@@ -72,6 +73,7 @@ class ProfileFragment : Fragment() {
             var fragmentTransaction: FragmentTransaction =
                 activity?.supportFragmentManager?.beginTransaction()!!
             fragmentTransaction.replace(com.example.smartpark.R.id.fl_profile, SubscriptionFragment() )
+            fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
     }

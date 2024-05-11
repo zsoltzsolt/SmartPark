@@ -97,5 +97,9 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.4.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.4.0")
 
+    // For plots
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+
 
 }

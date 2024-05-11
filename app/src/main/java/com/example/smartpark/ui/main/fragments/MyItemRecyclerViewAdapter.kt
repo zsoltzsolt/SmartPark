@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.smartpark.R
 import com.example.smartpark.databinding.FragmentSubscriptionBinding
@@ -36,6 +38,7 @@ class MyItemRecyclerViewAdapter(
 
     inner class TitleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView: TextView = itemView.findViewById(R.id.tv_title)
+        val button: ImageButton = itemView.findViewById(R.id.btn_back)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -84,6 +87,15 @@ class MyItemRecyclerViewAdapter(
                 val fragmentTransaction = fragmentManager.beginTransaction()
                 fragmentTransaction.replace(R.id.frame_layout, offerFragment)
                 fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
+        }else{
+            val button = holder as TitleViewHolder
+            button.button.setOnClickListener {
+                val profileFragment = ProfileFragment()
+                val fragmentManager = (context as MainActivity).supportFragmentManager
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.frame_layout, profileFragment)
                 fragmentTransaction.commit()
             }
         }

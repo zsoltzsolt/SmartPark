@@ -11,6 +11,7 @@ import com.example.smartpark.BuildConfig
 import com.example.smartpark.R
 import com.example.smartpark.databinding.FragmentOfferBinding
 import com.example.smartpark.model.PaymentResponse
+import com.example.smartpark.ui.main.MainActivity
 import com.example.smartpark.util.Constants
 import com.google.gson.Gson
 import com.stripe.android.PaymentConfiguration
@@ -82,6 +83,7 @@ class OfferFragment : Fragment() {
     }
 
     private fun setupButtonInteraction() {
+
         val monthlyButton = binding.btnImgMonthly
         val yearlyButton = binding.btnImgYearly
 
@@ -89,6 +91,14 @@ class OfferFragment : Fragment() {
         yearlyButton.setBackgroundResource(android.R.color.black)
 
         val buttons = listOf(monthlyButton, yearlyButton)
+
+        binding.btnBack.setOnClickListener {
+            val subscriptionFragment = SubscriptionFragment()
+            val fragmentManager = (context as MainActivity).supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.frame_layout, subscriptionFragment)
+            fragmentTransaction.commit()
+        }
 
         for (button in buttons) {
             button.setOnClickListener {
