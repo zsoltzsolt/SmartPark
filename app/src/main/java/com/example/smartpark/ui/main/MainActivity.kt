@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
-                    transaction.replace(R.id.frame_layout, OfferFragment())
+                    transaction.replace(R.id.frame_layout, ProfileFragment())
                     transaction.commit()
                     true
                 }
