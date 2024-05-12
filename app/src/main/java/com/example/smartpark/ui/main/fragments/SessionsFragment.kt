@@ -12,7 +12,9 @@ import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.smartpark.R
+import com.example.smartpark.model.ProfileResponse
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -33,12 +35,15 @@ class SessionsFragment : Fragment() {
     private lateinit var tvSelectedDateTime: TextView
     private var startDateTime: Calendar? = null
     private var endDateTime: Calendar? = null
+    private val predictViewModel: SessionsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_sessions, container, false)
+        var predict: String? = null
+
 
         chart = view.findViewById(R.id.chart)
         btnPredict = view.findViewById(R.id.btn_predict)
@@ -79,6 +84,11 @@ class SessionsFragment : Fragment() {
                 val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
                 val message = "Predicting availability from ${dateFormat.format(startDateTime!!.time)} to ${dateFormat.format(endDateTime!!.time)}"
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                predictViewModel.predict("2024-10-19T08:00:00.000-05:00","2024-10-19T10:00:00.000-05:00")
+
+                predictViewModel.predictResponse.observe(viewLifecycleOwner) { response ->
+                    Toast.makeText(this.context, "Nice", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(requireContext(), "Please select start and end date/time", Toast.LENGTH_SHORT).show()
             }
