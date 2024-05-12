@@ -2,7 +2,9 @@ package com.example.smartpark.ui.main.fragments
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +23,8 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.ValueFormatter
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,8 +46,6 @@ class SessionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_sessions, container, false)
-        var predict: String? = null
-
 
         chart = view.findViewById(R.id.chart)
         btnPredict = view.findViewById(R.id.btn_predict)
@@ -53,10 +55,21 @@ class SessionsFragment : Fragment() {
         btnEndTime = view.findViewById(R.id.btn_end_hour)
         tvSelectedDateTime = view.findViewById(R.id.tv_selected_datetime)
 
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupChart()
         setupButtons()
+        observePredictResponse()
+    }
 
-        return view
+    private fun observePredictResponse() {
+        predictViewModel.predictResponse.observe(viewLifecycleOwner, { responseMap ->
+            Log.d("PredictResponse", responseMap.toString())
+            setupChart(responseMap!!)
+        })
     }
 
     private fun setupChart() {
@@ -81,14 +94,9 @@ class SessionsFragment : Fragment() {
 
         btnPredict.setOnClickListener {
             if (startDateTime != null && endDateTime != null) {
-                val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
-                val message = "Predicting availability from ${dateFormat.format(startDateTime!!.time)} to ${dateFormat.format(endDateTime!!.time)}"
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-                predictViewModel.predict("2024-10-19T08:00:00.000-05:00","2024-10-19T10:00:00.000-05:00")
-
-                predictViewModel.predictResponse.observe(viewLifecycleOwner) { response ->
-                    Toast.makeText(this.context, "Nice", Toast.LENGTH_SHORT).show()
-                }
+                val startIsoDateTime = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault()).format(startDateTime!!.time)
+                val endIsoDateTime = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault()).format(endDateTime!!.time)
+                predictViewModel.predict(startIsoDateTime, endIsoDateTime)
             } else {
                 Toast.makeText(requireContext(), "Please select start and end date/time", Toast.LENGTH_SHORT).show()
             }
@@ -144,4 +152,56 @@ class SessionsFragment : Fragment() {
         )
         timePickerDialog.show()
     }
+
+    private fun setupChart(responseMap: Map<String, Double>) {
+        chart.clear()
+
+        val entries = mutableListOf<Entry>()
+
+        for ((key, value) in responseMap) {
+            val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).parse(key)
+            val calendar = Calendar.getInstance()
+            calendar.time = date!!
+
+            val hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
+            entries.add(Entry(hourOfDay.toFloat(), value.toFloat()))
+        }
+
+        val dataSet = LineDataSet(entries, "Availability Percentage")
+        dataSet.color = Color.BLUE
+        dataSet.valueTextColor = Color.WHITE
+
+        val lineData = LineData(dataSet)
+
+        chart.data = lineData
+        chart.description.text = "Availability Prediction"
+        chart.description.textColor = Color.WHITE
+        chart.setTouchEnabled(true)
+        chart.isDragEnabled = true
+        chart.setScaleEnabled(true)
+        chart.setPinchZoom(true)
+        chart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+        chart.xAxis.valueFormatter = HourAxisValueFormatter()
+        chart.xAxis.textColor = Color.WHITE
+        chart.axisLeft.valueFormatter = PercentAxisValueFormatter()
+        chart.axisLeft.textColor = Color.WHITE
+        chart.legend.textColor = Color.WHITE
+        chart.axisRight.isEnabled = false
+        chart.invalidate()
+    }
+
+
+
+    private class HourAxisValueFormatter : ValueFormatter() {
+        override fun getFormattedValue(value: Float): String {
+            return String.format("%02d:00", value.toInt())
+        }
+    }
+
+    private class PercentAxisValueFormatter : ValueFormatter() {
+        override fun getFormattedValue(value: Float): String {
+            return "${(value * 100).toInt()}%"
+        }
+    }
+
 }

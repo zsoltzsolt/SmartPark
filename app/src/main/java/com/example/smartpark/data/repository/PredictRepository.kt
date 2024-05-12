@@ -10,10 +10,8 @@ import javax.inject.Inject
 
 class PredictRepository @Inject constructor(private val predictApiService: PredictApiService) {
 
-    fun predict(
-        start: String,
-        end: String
-    ): Call<String> {
+    fun predict(start: String, end: String
+    ): Call<Map<String, Double>> {
         return try {
             val response = predictApiService.predict(PredictBody(start, end))
             response
