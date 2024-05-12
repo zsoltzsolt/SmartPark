@@ -1,6 +1,7 @@
 package com.example.smartpark.ui.main.fragments
 
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.app.TimePickerDialog
 import android.graphics.Color
 import android.os.Bundle
@@ -13,6 +14,7 @@ import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.smartpark.R
@@ -32,10 +34,8 @@ class SessionsFragment : Fragment() {
 
     private lateinit var chart: LineChart
     private lateinit var btnPredict: Button
-    private lateinit var btnStartDate: Button
-    private lateinit var btnStartTime: Button
-    private lateinit var btnEndDate: Button
-    private lateinit var btnEndTime: Button
+    private lateinit var btnStart: Button
+    private lateinit var btnEnd: Button
     private lateinit var tvSelectedDateTime: TextView
     private var startDateTime: Calendar? = null
     private var endDateTime: Calendar? = null
@@ -49,10 +49,8 @@ class SessionsFragment : Fragment() {
 
         chart = view.findViewById(R.id.chart)
         btnPredict = view.findViewById(R.id.btn_predict)
-        btnStartDate = view.findViewById(R.id.btn_start_day)
-        btnStartTime = view.findViewById(R.id.btn_start_hour)
-        btnEndDate = view.findViewById(R.id.btn_end_day)
-        btnEndTime = view.findViewById(R.id.btn_end_hour)
+        btnStart = view.findViewById(R.id.btn_start_datetime)
+        btnEnd = view.findViewById(R.id.btn_end_datetime)
         tvSelectedDateTime = view.findViewById(R.id.tv_selected_datetime)
 
         return view
@@ -76,20 +74,12 @@ class SessionsFragment : Fragment() {
     }
 
     private fun setupButtons() {
-        btnStartDate.setOnClickListener {
-            showDatePicker(true)
+        btnStart.setOnClickListener {
+            showDateTimePicker(true)
         }
 
-        btnStartTime.setOnClickListener {
-            showTimePicker(true)
-        }
-
-        btnEndDate.setOnClickListener {
-            showDatePicker(false)
-        }
-
-        btnEndTime.setOnClickListener {
-            showTimePicker(false)
+        btnEnd.setOnClickListener {
+            showDateTimePicker(false)
         }
 
         btnPredict.setOnClickListener {
@@ -103,54 +93,60 @@ class SessionsFragment : Fragment() {
         }
     }
 
-    private fun showDatePicker(isStartDate: Boolean) {
-        val currentDate = Calendar.getInstance()
-        val year = currentDate.get(Calendar.YEAR)
-        val month = currentDate.get(Calendar.MONTH)
-        val day = currentDate.get(Calendar.DAY_OF_MONTH)
-
-        val datePickerDialog = DatePickerDialog(
-            requireContext(),
-            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-                val selectedDate = Calendar.getInstance()
-                selectedDate.set(year, monthOfYear, dayOfMonth)
-                if (isStartDate) {
-                    startDateTime = selectedDate
-                } else {
-                    endDateTime = selectedDate
-                }
-            },
-            year,
-            month,
-            day
-        )
-        datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
-        datePickerDialog.show()
+    private fun showDateTimePicker(isStartDate: Boolean) {
+        val currentDateTime = if (isStartDate) startDateTime ?: Calendar.getInstance() else endDateTime ?: Calendar.getInstance()
+        val dateTimePicker = DateTimePickerFragment(currentDateTime) { dateTime ->
+            if (isStartDate) {
+                startDateTime = dateTime
+            } else {
+                endDateTime = dateTime
+            }
+            updateSelectedDateTimeText()
+        }
+        dateTimePicker.show(requireFragmentManager(), "dateTimePicker")
     }
 
-    private fun showTimePicker(isStartTime: Boolean) {
-        val currentTime = Calendar.getInstance()
-        val hour = currentTime.get(Calendar.HOUR_OF_DAY)
-        val minute = currentTime.get(Calendar.MINUTE)
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy HH", Locale.getDefault())
-        val timePickerDialog = TimePickerDialog(
-            requireContext(),
-            TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-                if (isStartTime) {
-                    startDateTime?.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                    startDateTime?.set(Calendar.MINUTE, minute)
-                    tvSelectedDateTime.text = "Selected Date/Time:\n"  + "  " + "${dateFormat.format(startDateTime!!.time)} -"
-                } else {
-                    endDateTime?.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                    endDateTime?.set(Calendar.MINUTE, minute)
-                    tvSelectedDateTime.text = "Selected Date/Time:\n"  + "  " + "${dateFormat.format(startDateTime!!.time)} - ${dateFormat.format(endDateTime!!.time)}"
+    private fun updateSelectedDateTimeText() {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+        val startText = if (startDateTime != null) dateFormat.format(startDateTime!!.time) else "Not set"
+        val endText = if (endDateTime != null) dateFormat.format(endDateTime!!.time) else "Not set"
+        tvSelectedDateTime.text = "Selected Start Date/Time: $startText\nSelected End Date/Time: $endText"
+    }
+
+    class DateTimePickerFragment(
+        private val initialDateTime: Calendar,
+        private val onDateTimeSetListener: (Calendar) -> Unit
+    ) : DialogFragment(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+
+        private var isDateSet = false
+
+        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+            val year = initialDateTime.get(Calendar.YEAR)
+            val month = initialDateTime.get(Calendar.MONTH)
+            val day = initialDateTime.get(Calendar.DAY_OF_MONTH)
+
+            return DatePickerDialog(requireContext(), this, year, month, day)
+        }
+
+        override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+            isDateSet = true
+            val hour = initialDateTime.get(Calendar.HOUR_OF_DAY)
+            val minute = initialDateTime.get(Calendar.MINUTE)
+            TimePickerDialog(requireContext(), this, hour, minute, true).show()
+        }
+
+        override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+            if (isDateSet) {
+                val selectedDateTime = Calendar.getInstance().apply {
+                    set(Calendar.YEAR, initialDateTime.get(Calendar.YEAR))
+                    set(Calendar.MONTH, initialDateTime.get(Calendar.MONTH))
+                    set(Calendar.DAY_OF_MONTH, initialDateTime.get(Calendar.DAY_OF_MONTH))
+                    set(Calendar.HOUR_OF_DAY, hourOfDay)
+                    set(Calendar.MINUTE, minute)
                 }
-            },
-            hour,
-            minute,
-            true
-        )
-        timePickerDialog.show()
+                onDateTimeSetListener.invoke(selectedDateTime)
+            }
+        }
     }
 
     private fun setupChart(responseMap: Map<String, Double>) {
