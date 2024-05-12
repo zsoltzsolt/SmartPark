@@ -130,6 +130,9 @@ class SessionsFragment : Fragment() {
 
         override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
             isDateSet = true
+            initialDateTime.set(Calendar.YEAR, year)
+            initialDateTime.set(Calendar.MONTH, month)
+            initialDateTime.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             val hour = initialDateTime.get(Calendar.HOUR_OF_DAY)
             val minute = initialDateTime.get(Calendar.MINUTE)
             TimePickerDialog(requireContext(), this, hour, minute, true).show()
@@ -137,17 +140,13 @@ class SessionsFragment : Fragment() {
 
         override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
             if (isDateSet) {
-                val selectedDateTime = Calendar.getInstance().apply {
-                    set(Calendar.YEAR, initialDateTime.get(Calendar.YEAR))
-                    set(Calendar.MONTH, initialDateTime.get(Calendar.MONTH))
-                    set(Calendar.DAY_OF_MONTH, initialDateTime.get(Calendar.DAY_OF_MONTH))
-                    set(Calendar.HOUR_OF_DAY, hourOfDay)
-                    set(Calendar.MINUTE, minute)
-                }
-                onDateTimeSetListener.invoke(selectedDateTime)
+                initialDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                initialDateTime.set(Calendar.MINUTE, minute)
+                onDateTimeSetListener.invoke(initialDateTime)
             }
         }
     }
+
 
     private fun setupChart(responseMap: Map<String, Double>) {
         chart.clear()
