@@ -28,9 +28,6 @@ class MainActivity : AppCompatActivity() {
         )
 
 
-        //binding.bottomNavigationView.background = null
-        //binding.bottomNavigationView.menu.getItem(2).isEnabled = false
-        Toast.makeText(this, "Okkk", Toast.LENGTH_SHORT).show()
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.frame_layout, HomeFragment())
@@ -39,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.mi_home -> {
-                    Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
                     transaction.replace(R.id.frame_layout, HomeFragment())
@@ -48,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.mi_sessions -> {
-                    Toast.makeText(this, "Sessions", Toast.LENGTH_SHORT).show()
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
                     transaction.replace(R.id.frame_layout, SessionsFragment())
@@ -57,7 +52,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.mi_map -> {
-                    Toast.makeText(this, "Maps", Toast.LENGTH_SHORT).show()
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
                     transaction.replace(R.id.frame_layout, MapsFragment())
@@ -66,7 +60,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.mi_profile -> {
-                    Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
                     transaction.replace(R.id.frame_layout, ProfileFragment())

@@ -5,6 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/robin_egg_blue</item>
         <item name="colorSecondary">@color/robin_egg_blue</item>
+
     </style>
 
     <style name="Theme.SmartPark" parent="Base.Theme.SmartPark">
